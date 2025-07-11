@@ -1,0 +1,13 @@
+html,
+body {
+	margin: 0;
+	padding: 0;
+	background-color: #141414; /* A dark gray background */
+}
+
+/* Center the canvas on the page */
+canvas {
+	display: block;
+	margin: auto;
+	margin-top: 2rem; /* Give it some space from the top */
+}

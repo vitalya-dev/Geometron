@@ -1,6 +1,6 @@
 // ===================================================================
 //
-//  Project: GEOMETRON - Refactored Sketch v5
+//  Project: GEOMETRON - Refactored Sketch v6
 //
 // ===================================================================
 
@@ -129,7 +129,7 @@ class OperatorConsole {
 // ===================================================================
 //
 //  ToggleSwitch Class
-//  (CHANGED to use color instead of text for ON state)
+//  (CHANGED to light the slot instead of the handle)
 //
 // ===================================================================
 class ToggleSwitch {
@@ -174,22 +174,24 @@ class ToggleSwitch {
 		textAlign(CENTER, CENTER);
 		text(`[ ${this.label} ]`, x + this.width / 2, y + 15);
 
+		// --- CHANGED: Set slot color based on state ---
+		if (this.isOn) {
+			fill(30, 120, 100); // A deep, glowing green for the slot background
+		} else {
+			fill(20, 20, 40); // The standard dark, unlit color
+		}
+		
 		// Draw the toggle slot
-		fill(20, 20, 40);
+		noStroke(); // The slot itself doesn't need an outline
 		rect(x + 22, y + 32, 16, 34, 3);
 
-		// --- CHANGED: Set handle color based on state ---
-		stroke(100);
-		if (this.isOn) {
-			fill(0, 255, 0); // Bright green for ON
-		} else {
-			fill(200); // Default gray for OFF
-		}
 
+		// --- CHANGED: Handle is now always the same color ---
+		fill(200); // Default gray for the handle
+		stroke(100);
+		
 		// Draw the toggle handle
 		let handleY = this.isOn ? y + 36 : y + 54;
 		rect(x + 18, handleY, 24, 10, 2);
-
-		// --- REMOVED: The "ON" / "OFF" text is no longer drawn ---
 	}
 }

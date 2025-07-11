@@ -90,3 +90,32 @@ The game is structured as a series of "puzzles" or "objectives," introducing one
     * **Switches:** A sharp, satisfying "clack."
     * **Buttons:** A deeper, momentous "ker-chunk" or "click."
     * **Feedback:** "Zaps" for line creation, "chimes" or "power-ups" for discovering key points.
+
+
+
+
+
+
+
+ [MONITOR 1: OBJECTIVES]                     [MONITOR 2: VISUAL DISPLAY]            [FUNCTION BUTTONS]
++------------------------------------------+ +--------------------------------------+ +-------------------+
+|                                          | |                                      | |                   |
+| > SPECIMEN LOADED.                       | |                                      | | .---------------. |
+|                                          | |      A .                             | | | [ MIDPOINT  ] | |
+| > ACTIVE TASK:                           | |       / \                            | | '---------------' |
+|   Find the midpoint of segment AB.       | |      /   \                           | | .---------------. |
+|                                          | |     /-----\ B                        | | | P. BISECTOR |o| |
+|                                          | |    /       \                         | | '---------------' |
+|                                          | |   /_________\                        | | .---------------. |
+|                                          | |  C                                   | | | A. BISECTOR |o| |
+|                                          | |                                      | | '---------------' |
++------------------------------------------+ +--------------------------------------+ |                   |
+                                             | [INPUT SWITCHES]                     | +-------------------+
+                                             +--------------------------------------+
+                                             |                                      |
+                                             |  /----\   /----\   /----\            |
+                                             | | [A]o|  | [B]o|  | o[C]|            |
+                                             |  \----/   \----/   \----/            |
+                                             |   (ON)     (ON)     (OFF)            |
+                                             |                                      |
+                                             +--------------------------------------+

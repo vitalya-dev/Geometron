@@ -1,6 +1,6 @@
 // ===================================================================
 //
-//  Project: GEOMETRON - Refactored Sketch v2
+//  Project: GEOMETRON - Refactored Sketch v5
 //
 // ===================================================================
 
@@ -64,10 +64,18 @@ class Monitor {
 	
 	display() {
 		push();
+
 		clip(() => {
 			rect(this.x, this.y, this.width, this.height);
 		});
+
 		this.drawGrid();
+		
+		stroke(0, 255, 204);
+		strokeWeight(4);
+		noFill();
+		rect(this.x + 2, this.y + 2, this.width - 4, this.height - 4);
+		
 		pop();
 	}
 }
@@ -75,8 +83,7 @@ class Monitor {
 
 // ===================================================================
 //
-//  OperatorConsole Class
-//  (CHANGED to calculate the absolute position for its children)
+//  OperatorConsole Class (No changes)
 //
 // ===================================================================
 class OperatorConsole {
@@ -88,16 +95,12 @@ class OperatorConsole {
 		
 		this.switches = [];
 		
-		// Define relative positions for the switches inside the console.
 		const switch_x = 50;
 		const switch_y = 50;
 		
-		// Calculate the absolute positions and pass them to the ToggleSwitch.
-		// The console knows its own position (this.x, this.y) and uses
-		// it to determine the final location of its components.
 		this.switches.push(new ToggleSwitch('A', this.x + switch_x, this.y + switch_y));
-		this.switches.push(new ToggleSwitch('B', this.x + switch_x + 100, this.y + switch_y));
-		this.switches.push(new ToggleSwitch('C', this.x + switch_x + 200, this.y + switch_y));
+		this.switches.push(new ToggleSwitch('B', this.x + switch_x + 80, this.y + switch_y));
+		this.switches.push(new ToggleSwitch('C', this.x + switch_x + 160, this.y + switch_y));
 	}
 	
 	handleInput(mx, my) {
@@ -126,18 +129,16 @@ class OperatorConsole {
 // ===================================================================
 //
 //  ToggleSwitch Class
-//  (CHANGED to be simpler; it only needs its absolute position)
+//  (CHANGED to use color instead of text for ON state)
 //
 // ===================================================================
 class ToggleSwitch {
-	// The constructor is now simpler. It only needs to know its
-	// final, absolute position on the canvas, not how to calculate it.
 	constructor(label, absoluteX, absoluteY) {
 		this.label = label;
 		this.absoluteX = absoluteX;
 		this.absoluteY = absoluteY;
-		this.width = 80;
-		this.height = 100;
+		this.width = 60;
+		this.height = 80;
 		this.isOn = false;
 		this.statusLightOn = false;
 	}
@@ -160,28 +161,35 @@ class ToggleSwitch {
 		const x = this.absoluteX;
 		const y = this.absoluteY;
 	
+		// Draw the switch body
 		stroke(0, 255, 204);
 		strokeWeight(3);
 		fill(51, 68, 102);
 		rect(x, y, this.width, this.height, 5);
 
+		// Draw the label
 		noStroke();
 		fill(0, 255, 204);
-		textSize(24);
+		textSize(20);
 		textAlign(CENTER, CENTER);
-		text(`[ ${this.label} ]`, x + this.width / 2, y + 20);
+		text(`[ ${this.label} ]`, x + this.width / 2, y + 15);
 
+		// Draw the toggle slot
 		fill(20, 20, 40);
-		rect(x + 30, y + 45, 20, 40, 3);
+		rect(x + 22, y + 32, 16, 34, 3);
 
-		fill(200);
+		// --- CHANGED: Set handle color based on state ---
 		stroke(100);
-		let handleY = this.isOn ? y + 50 : y + 70;
-		rect(x + 25, handleY, 30, 10, 2);
+		if (this.isOn) {
+			fill(0, 255, 0); // Bright green for ON
+		} else {
+			fill(200); // Default gray for OFF
+		}
 
-		fill(150);
-		textSize(12);
-		text('ON', x + this.width / 2, y + 50);
-		text('OFF', x + this.width / 2, y + 80);
+		// Draw the toggle handle
+		let handleY = this.isOn ? y + 36 : y + 54;
+		rect(x + 18, handleY, 24, 10, 2);
+
+		// --- REMOVED: The "ON" / "OFF" text is no longer drawn ---
 	}
 }
